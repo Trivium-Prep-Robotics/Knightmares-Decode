@@ -18,6 +18,7 @@ public class AutoTemplate extends LinearOpMode {
     private Follower follower;
     private Path wtvthefuckitis;
     public static final Pose killingmyself67 = new Pose(63.64, 2.62, Math.toRadians(0));
+    public static final Pose leavingline = new Pose(64.23, 37.05, Math.toRadians(0));
     public void runOpMode() throws InterruptedException {
         Parts config = new Parts(hardwareMap); // configure robot
         Robot robot = new Robot(); // configure robot
@@ -37,7 +38,7 @@ public class AutoTemplate extends LinearOpMode {
 
     public void paths() {
         // basic parking path
-        wtvthefuckitis = new Path(new BezierLine(killingmyself67, new Pose(64.23, 37.05, Math.toRadians(0))));
-        wtvthefuckitis.setConstantHeadingInterpolation(Math.toRadians(0));
+        wtvthefuckitis = new Path(new BezierLine(killingmyself67, leavingline));
+        wtvthefuckitis.setConstantHeadingInterpolation(killingmyself67.getHeading());
     }
 }
