@@ -2,8 +2,11 @@ package org.firstinspires.ftc.teamcode.teleOp;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.pedropathing.follower.Follower;
+import com.pedropathing.geometry.Pose;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -23,6 +26,8 @@ import org.firstinspires.ftc.teamcode.util.AprilTagDetectionPipeline;
 @TeleOp (name = "teleOp", group = "TELEOP")
 public class teleOpTemplate extends LinearOpMode {
     OpenCvCamera camera;
+    private Follower follower;
+    private final Pose kms67 = new Pose(0,0,Math.toRadians(0));
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
 
     // calibration for C920 webcam if you have different camera then uhh change it ig??
@@ -58,6 +63,12 @@ public class teleOpTemplate extends LinearOpMode {
             }
         });
 
+        follower = Constants.createFollower(hardwareMap);
+        follower.setStartingPose(kms67);
+        follower.update();
+        follower.startTeleopDrive();
+
+
         waitForStart(); // initialize
 
         // set the power used for arm motors to 1
@@ -89,10 +100,15 @@ public class teleOpTemplate extends LinearOpMode {
             robot.specimen(gamepad2.y);
             robot.sample(gamepad2.a);
 
-            // sets field centric drive, if you would like robot centric or tank uncomment which one you want but make sure no more than one is uncommented
-            robot.feildCentric(gamepad1);
-//            robot.robotCentric(gamepad1);
-//            robot.tankDrive(gamepad1);
+            follower.setTeleOpDrive(-gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x, false); // idk for isrobotcentric so I'm thinking no???
+            follower.update();
+
+            telemetry.addData("X", follower.getPose().getX());
+            telemetry.addData("Y", follower.getPose().getY());
+            telemetry.addData("Heading in Degrees", Math.toDegrees(follower.getPose().getHeading()));
+            telemetry.update();
+            
+            //robot.feildCentric(gamepad1);
         }
     }
 
