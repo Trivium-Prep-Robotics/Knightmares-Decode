@@ -3,8 +3,17 @@ package org.firstinspires.ftc.teamcode.teleOp;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.openftc.apriltag.AprilTagDetection;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvCameraRotation;
+import org.openftc.easyopencv.OpenCvInternalCamera;
+
+
 import org.firstinspires.ftc.teamcode.util.Parts;
 import org.firstinspires.ftc.teamcode.util.Robot;
+import org.firstinspires.ftc.teamcode.util.AprilTagDetectionPipeline;
 
 
 /**
@@ -13,15 +22,41 @@ import org.firstinspires.ftc.teamcode.util.Robot;
  */
 @TeleOp (name = "teleOp", group = "TELEOP")
 public class teleOpTemplate extends LinearOpMode {
+    OpenCvCamera camera;
+    AprilTagDetectionPipeline aprilTagDetectionPipeline;
 
+    // calibration for C920 webcam if you have different camera then uhh change it ig??
+    double fx = 578.272;
+    double fy = 578.272;
+    double cx = 402.145;
+    double cy = 221.506;
+
+    // UNITS ARE METERS
+    double tagsize = 0.166;
 
     public void runOpMode() throws InterruptedException {
         Parts config = new Parts(hardwareMap); // configure robot
         Robot robot = new Robot(); // configure robot
-        // if you want to use other classes these are example ways of how you would do that
-//        DriveTemplate drive = new DriveTemplate();
-//        ClawTemplate claw = new ClawTemplate();
-//        ArmTemplate arm = new ArmTemplate();
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
+        aprilTagDetectionPipeline = new AprilTagDetectionPipeline(tagsize, fx, fy, cx, cy);
+
+        camera.setPipeline(aprilTagDetectionPipeline);
+        camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
+        {
+            @Override
+            public void onOpened()
+            {
+                camera.startStreaming(800,448, OpenCvCameraRotation.UPRIGHT);
+            }
+
+            @Override
+            public void onError(int errorCode)
+            {
+                telemetry.addData("well atleast we tried", "camera doesn't open if you're confused");
+                telemetry.update();
+            }
+        });
 
         waitForStart(); // initialize
 
@@ -33,17 +68,6 @@ public class teleOpTemplate extends LinearOpMode {
         robot.sampSpecPose(0.075, 0.6); // set wrist positions
 
         while (opModeIsActive()) {
-            /**
-             * I the button in the parameters are the assigned button for that command
-             * the stop methods on the other hand you just put the conditions in which you don't want them moving
-             *
-             * If you use the joysticks or triggers for any case you should go to the interface
-             * and set the method to intake a double instead of a boolean and then do the same for
-             * the class that extends it.
-             *
-             * By default the extend and retract use doubles, sense our code used the trigger buttons for those
-             * so if you want to use another button you switch it to boolean
-             */
 
             // arm controls
             robot.up(gamepad2.dpad_up);
