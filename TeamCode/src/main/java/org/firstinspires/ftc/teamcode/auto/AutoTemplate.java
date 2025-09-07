@@ -20,7 +20,7 @@ public class AutoTemplate extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Parts config = new Parts(hardwareMap); // configure robot
         Robot robot = new Robot(); // configure robot
-        
+        // follower base coming soon
         follower.setStartingPose(killingmyself67);
         paths(); // path builder for park
 
