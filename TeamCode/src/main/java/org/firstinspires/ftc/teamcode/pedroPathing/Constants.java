@@ -9,6 +9,9 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+import org.firstinspires.ftc.teamcode.util.Parts;
+
+
 public class Constants {
     public static FollowerConstants followerConstants = new FollowerConstants();
 
@@ -16,11 +19,10 @@ public class Constants {
 
     public static MecanumConstants driveConstants = new MecanumConstants()
             // this is jacob's config so um yeah!!
-            // I'll prob organize this a bit in later time
-            .leftFrontMotorName("leftFront")
-            .leftRearMotorName("leftRear")
-            .rightFrontMotorName("rightFront")
-            .rightRearMotorName("rightRear")
+            .leftFrontMotorName(Parts.FL.getDeviceName())
+            .leftRearMotorName(Parts.BL.getDeviceName())
+            .rightFrontMotorName(Parts.FR.getDeviceName())
+            .rightRearMotorName(Parts.BR.getDeviceName())
             .leftFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
             .leftRearMotorDirection(DcMotorSimple.Direction.REVERSE);
 
