@@ -3,12 +3,14 @@ package org.firstinspires.ftc.teamcode.basics;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 /**
  * This is the basics of using encoders
  */
 
 @Autonomous
+@Disabled
 public class Encoders extends LinearOpMode{
 
     DcMotor frontRight, frontLeft, backRight, backLeft, arm;

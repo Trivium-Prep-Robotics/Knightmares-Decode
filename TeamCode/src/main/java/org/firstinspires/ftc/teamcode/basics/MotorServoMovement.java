@@ -4,12 +4,14 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 /**
  * This is the basics of Motor and Servo coding
  */
 
 @Autonomous(group="samples", name = "Auto code")
+@Disabled
 public class MotorServoMovement extends LinearOpMode {
     /**
      * This is where you declare all of your motors and servos
