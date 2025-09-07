@@ -53,7 +53,7 @@ public class teleOpTemplate extends LinearOpMode {
             @Override
             public void onError(int errorCode)
             {
-                telemetry.addData("well atleast we tried", "camera doesn't open if you're confused");
+                telemetry.addData("camera error: ", errorCode);
                 telemetry.update();
             }
         });
