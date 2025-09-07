@@ -7,6 +7,7 @@ import com.pedropathing.geometry.Pose;
 import com.pedropathing.geometry.BezierLine;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.pedropathing.follower.FollowerConstants;
+import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
 import org.firstinspires.ftc.teamcode.util.Parts;
 import org.firstinspires.ftc.teamcode.util.Robot;
@@ -20,7 +21,8 @@ public class AutoTemplate extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Parts config = new Parts(hardwareMap); // configure robot
         Robot robot = new Robot(); // configure robot
-        // follower base coming soon
+
+        //follower = new Follower(Constants.followerConstants, )
         follower.setStartingPose(killingmyself67);
         paths(); // path builder for park
 
@@ -35,7 +37,7 @@ public class AutoTemplate extends LinearOpMode {
 
     public void paths() {
         // basic parking path
-        wtvthefuckitis = new Path(new BezierLine(new Pose(63.64, 2.62, Math.toRadians(0)), new Pose(64.23, 37.05, Math.toRadians(0))));
+        wtvthefuckitis = new Path(new BezierLine(killingmyself67, new Pose(64.23, 37.05, Math.toRadians(0))));
         wtvthefuckitis.setConstantHeadingInterpolation(Math.toRadians(0));
     }
 }
