@@ -29,14 +29,14 @@ public class teleOp extends NextFTCOpMode {
         follower.setStartingPose(startingpose);
         follower.update();
         follower.startTeleopDrive();
-
-        Shooter.shootmanual(gamepad1.a);
+        
     }
 
     @Override
     public void onStartButtonPressed() {
         follower.setTeleOpDrive(-gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x, false); // idk for isrobotcentric so I'm thinking no???
         //follower.update();
+        Shooter.shootmanual(gamepad1.a);
 
     }
     @Override
