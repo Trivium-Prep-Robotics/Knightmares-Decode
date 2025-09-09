@@ -3,6 +3,5 @@
 - [ ] Forward Tuner
 - [ ] Lateral Tuner
 - [ ] Turn Tuner
-## Setup Limelight/C270
-- [ ] Setting up camera (maybe finished) 
+## Setup Limelight
 - [ ] Apriltag Tracking
