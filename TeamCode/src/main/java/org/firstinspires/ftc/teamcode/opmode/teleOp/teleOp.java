@@ -10,11 +10,6 @@ import org.firstinspires.ftc.teamcode.common.pedroPathing.Constants;
 import org.firstinspires.ftc.teamcode.common.util.Parts;
 import org.firstinspires.ftc.teamcode.common.util.Robot;
 
-
-/**
- * This is a template for a teleOp
- * It should allow you to move field centric and has the base structure of teleOp along with configuring the robot
- */
 @TeleOp (name = "teleOp", group = "TELEOP")
 public class teleOp extends NextFTCOpMode {
     private Follower follower;
@@ -44,15 +39,5 @@ public class teleOp extends NextFTCOpMode {
         telemetry.addData("Heading in Degrees", Math.toDegrees(follower.getPose().getHeading()));
         telemetry.update();
         follower.update(); // maybe??
-    }
-
-    public void tagToTelemetry(AprilTagDetection detection) {
-        telemetry.addLine(String.format("\nDetected tag ID=%d", detection.id));
-        //telemetry.addLine(String.format("Translation X: %.2f feet", detection.pose.x * FEET_PER_METER));
-        //telemetry.addLine(String.format("Translation Y: %.2f feet", detection.pose.y * FEET_PER_METER));
-        //telemetry.addLine(String.format("Translation Z: %.2f feet", detection.pose.z * FEET_PER_METER));
-        //telemetry.addLine(String.format("Rotation Yaw: %.2f degrees", Math.toDegrees(detection.pose.yaw)));
-        //telemetry.addLine(String.format("Rotation Pitch: %.2f degrees", Math.toDegrees(detection.pose.pitch)));
-        //telemetry.addLine(String.format("Rotation Roll: %.2f degrees", Math.toDegrees(detection.pose.roll)));
     }
 }
