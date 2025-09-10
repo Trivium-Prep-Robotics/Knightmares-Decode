@@ -8,7 +8,7 @@ public class Shooter {
         }
     }
 
-    public void shootauto() throws InterruptedException { // idk bro this is skunked asf
+    public static void shootauto() throws InterruptedException { // idk bro this is skunked asf
         Parts.shooterOne.setPower(1);
         Parts.shooterTwo.setPower(1);
         Thread.sleep(100);
