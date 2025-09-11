@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.opmode.auto;
 
 import com.pedropathing.paths.Path;
+import dev.nextftc.ftc.NextFTCOpMode;
 import com.pedropathing.paths.PathChain;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.pedropathing.follower.Follower;
@@ -15,7 +16,7 @@ import org.firstinspires.ftc.teamcode.common.util.Robot;
 
 
 @Autonomous (name = "ParkSideDirect", group = "Decode")
-public class ParkSideDirect extends LinearOpMode {
+public class ParkSideDirect extends NextFTCOpMode {
     private Follower follower;
     private PathChain scoring;
     private PathChain goingtohuman;
@@ -25,15 +26,14 @@ public class ParkSideDirect extends LinearOpMode {
     public static final Pose startingpose = new Pose(56, 8, Math.toRadians(0));
     public static final Pose scorepose = new Pose(28.14, 120.52, Math.toRadians(0));
     public static final Pose humanplayer = new Pose(12.63, 11.52, Math.toRadians(0));
-    public void runOpMode() throws InterruptedException {
+    @Override
+    public void onInit() throws InterruptedException {
         Parts config = new Parts(hardwareMap); // configure robot
         Robot robot = new Robot(); // configure robot
 
         follower = Constants.createFollower(hardwareMap);
         follower.setStartingPose(startingpose);
         buildPaths(); // path builder for park
-
-        waitForStart();
 
         // go park which is going after the line and free 3 points!!!!!!!!
         follower.followPath(scoring);
