@@ -20,23 +20,23 @@ public class Shooter {
         }
     }
 
-    public static void shootauto()  { // if this doesn't work then I'm not surprised lmao
+    public static void shootauto() throws InterruptedException  { // if this doesn't work then I'm not surprised lmao
 
         Parts.shooterOne.setPower(1);
         Parts.shooterTwo.setPower(1);
-        new Delay(100);
+        Thread.sleep(100);
         Parts.shooterOne.setPower(0);
         Parts.shooterTwo.setPower(0);
-        new Delay(100);
+        Thread.sleep(100);
         Parts.shooterOne.setPower(1);
         Parts.shooterTwo.setPower(1);
-        new Delay(100);;
+        Thread.sleep(100);
         Parts.shooterOne.setPower(0);
         Parts.shooterTwo.setPower(0);
-        new Delay(100);
+        Thread.sleep(100);
         Parts.shooterOne.setPower(1);
         Parts.shooterTwo.setPower(1);
-        new Delay(100);
+        Thread.sleep(100);
         Parts.shooterOne.setPower(0);
         Parts.shooterTwo.setPower(0);
     }

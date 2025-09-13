@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.common.util.Robot;
 
 
 @Autonomous (name = "ParkSideDirect", group = "Decode")
-public class ParkSideDirect extends NextFTCOpMode {
+public class ParkSideDirect extends LinearOpMode {
     private Follower follower;
     private PathChain scoring;
     private PathChain goingtohuman;
@@ -27,7 +27,7 @@ public class ParkSideDirect extends NextFTCOpMode {
     public static final Pose scorepose = new Pose(28.14, 120.52, Math.toRadians(0));
     public static final Pose humanplayer = new Pose(12.63, 11.52, Math.toRadians(0));
     @Override
-    public void onInit() throws InterruptedException {
+    public void runOpMode() throws InterruptedException {
         Parts config = new Parts(hardwareMap); // configure robot
         Robot robot = new Robot(); // configure robot
 
