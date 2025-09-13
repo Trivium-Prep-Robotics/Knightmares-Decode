@@ -1,9 +1,0 @@
-package org.firstinspires.ftc.teamcode.common.util;
-
-import com.qualcomm.robotcore.hardware.Gamepad;
-
-public interface Drive {
-    public void feildCentric(Gamepad gamepad); // field centric drive, condition is the gamepad used
-
-}
-
